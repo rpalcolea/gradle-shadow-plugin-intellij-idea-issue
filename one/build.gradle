@@ -1,0 +1,13 @@
+apply plugin: 'com.github.johnrengelman.shadow'
+
+dependencies {
+    api 'com.google.guava:guava:30.1.1-jre'
+}
+
+shadowJar {
+    classifier = null
+    relocate 'com.google', 'com.some.example.internal.com.google'
+}
+
+jar.enabled = false
+jar.dependsOn shadowJar

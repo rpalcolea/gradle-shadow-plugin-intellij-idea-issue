@@ -1,0 +1,24 @@
+plugins {
+    id "com.github.johnrengelman.shadow" version "7.0.0"
+}
+
+subprojects { subproject ->
+    apply plugin: 'java-library'
+    apply plugin: 'maven-publish'
+
+    repositories {
+        mavenCentral()
+    }
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = 'com.some.example'
+                artifactId = subproject.name
+                version = '1.0'
+
+                from components.java
+            }
+        }
+    }
+}
